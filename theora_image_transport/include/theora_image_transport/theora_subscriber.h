@@ -55,7 +55,6 @@ protected:
     rclcpp::Node* node,
     const std::string &base_topic,
     const Callback & callback,
-    uint32_t queue_size,
     rmw_qos_profile_t custom_qos);
 
   // The function that does the actual decompression and calls a user supplied

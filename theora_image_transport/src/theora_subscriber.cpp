@@ -69,7 +69,6 @@ void TheoraSubscriber::subscribeImpl(
   rclcpp::Node * node,
   const std::string &base_topic,
   const Callback & callback,
-  uint32_t queue_size,
   rmw_qos_profile_t custom_qos)
 {
   logger_ = node->get_logger();
@@ -79,7 +78,7 @@ void TheoraSubscriber::subscribeImpl(
   // messages until they are taken.  KEEP_LAST enforces a limit on the number of
   // messages that are saved, specified by the "depth" parameter.
   custom_qos.history = rmw_qos_profile_default.history;
-  custom_qos.depth = queue_size + 4;
+  custom_qos.depth += 4;
 
   typedef image_transport::SimpleSubscriberPlugin<theora_image_transport::msg::Packet> Base;
   Base::subscribeImpl(node, base_topic, callback, custom_qos);
